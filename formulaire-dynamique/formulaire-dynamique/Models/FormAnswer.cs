@@ -5,7 +5,19 @@ using System.Text;
 
 namespace formulaire_dynamique.Models
 {
-    class FormAnswer
+    public class FormAnswer
     {
+        private string _uniqueName;
+
+
+        public FormAnswer (string uniqueName)
+        {
+            _uniqueName = uniqueName;
+        }
+
+        public string UniqueName
+        {
+            get { return _uniqueName; }
+        }
     }
 }

@@ -7,22 +7,40 @@ namespace formulaire_dynamique.Models
 {
     public class Form
     {
-        private String _title;
+        private string _title;
         private List<FormAnswer> _answers;
+        private QuestionsFolder _questions;
 
-        public String Title
+        public QuestionsFolder Questions
+        {
+            get { return _questions; }
+        }
+
+        public Form()
+        {
+            _answers = new List<FormAnswer>();
+            _questions = new QuestionsFolder();
+        }
+
+        public string Title
         {
             get { return _title; }
             set { _title = value; }
         }
 
-        public FormAnswer FindOrCreateAnswer(String uniqueName)
+        public int AnswerCount { get { return _answers.Count; } }
+
+        public FormAnswer FindOrCreateAnswer(string uniqueName)
         {
-            foreach (var answer in _answers)
+            foreach (FormAnswer answer in _answers)
             {
                 if (answer.UniqueName == uniqueName)
-                    return answer
+                    return answer;
             }
+            FormAnswer response = new FormAnswer(uniqueName);
+
+            _answers.Add(response);
+            return response;
         }
 
     }
