@@ -46,5 +46,24 @@ namespace formulaire_dynamique.Tests
             Assert.IsTrue(f.Questions.Contains(q1));
             Assert.IsTrue(f.Questions.Contains(q2));
         }
+
+        [Test]
+        public void LaTotal()
+        {
+            Form f = new Form();
+            OpenQuestion qOpen = (OpenQuestion)f.Questions.AddNewQuestion(typeof(OpenQuestion), true);
+            qOpen.Title = "First Question in the World!";
+            qOpen.AllowEmptyAnswer = false;
+            FormAnswer a = f.CreateAnswer("Emilie");
+            AnswerBase theAnswerOfEmilieToQOpen = a.FindAnswer(qOpen);
+            if (theAnswerOfEmilieToQOpen == null)
+            {
+                theAnswerOfEmilieToQOpen = a.AddAnswerFor(qOpen);
+            }
+            Assert.IsInstanceOfType(typeof(OpenAnswer), theAnswerOfEmilieToQOpen);
+
+            OpenAnswer emilieAnswer = (OpenAnswer)theAnswerOfEmilieToQOpen;
+            emilieAnswer.FreeAnswer = "I'm very happy to be here.";
+        }
     }
 }

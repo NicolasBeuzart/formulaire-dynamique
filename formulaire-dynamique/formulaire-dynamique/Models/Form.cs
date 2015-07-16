@@ -9,9 +9,9 @@ namespace formulaire_dynamique.Models
     {
         private string _title;
         private List<FormAnswer> _answers;
-        private QuestionsFolder _questions;
+        private QuestionBase _questions;
 
-        public QuestionsFolder Questions
+        public QuestionBase Questions
         {
             get { return _questions; }
         }
@@ -19,7 +19,7 @@ namespace formulaire_dynamique.Models
         public Form()
         {
             _answers = new List<FormAnswer>();
-            _questions = new QuestionsFolder();
+            _questions = new QuestionBase();
         }
 
         public string Title
@@ -37,11 +37,16 @@ namespace formulaire_dynamique.Models
                 if (answer.UniqueName == uniqueName)
                     return answer;
             }
+            return CreateAnswer(uniqueName);
+        }
+
+
+        public FormAnswer CreateAnswer(string uniqueName)
+        {
             FormAnswer response = new FormAnswer(uniqueName);
 
             _answers.Add(response);
             return response;
         }
-
     }
 }
