@@ -9,9 +9,9 @@ namespace formulaire_dynamique.Models
     {
         private string _title;
         private List<FormAnswer> _answers;
-        private QuestionBase _questions;
+        private QuestionRoot _questions;
 
-        public QuestionBase Questions
+        public QuestionRoot Questions
         {
             get { return _questions; }
         }
@@ -19,7 +19,7 @@ namespace formulaire_dynamique.Models
         public Form()
         {
             _answers = new List<FormAnswer>();
-            _questions = new QuestionBase();
+            _questions = new QuestionRoot();
         }
 
         public string Title

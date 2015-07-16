@@ -7,5 +7,10 @@ namespace formulaire_dynamique.Models
 {
     public class CompositeQuestion : QuestionBase
     {
+        public CompositeQuestion(QuestionBase parent, List<QuestionBase> questions)
+        {
+            _parent = parent;
+            _questions = questions;
+        }
     }
 }

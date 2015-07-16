@@ -9,11 +9,10 @@ namespace formulaire_dynamique.Models
     {
         private bool _allowEmptyAnswer = true;
 
-        public OpenQuestion(QuestionBase parent, Dictionary<int, QuestionBase> questions)
+        public OpenQuestion(QuestionBase parent, List<QuestionBase> questions)
         {
             _parent = parent;
             _questions = questions;
-            _index = questions.Count;
         }
 
         override public AnswerBase CreateAnswer()
