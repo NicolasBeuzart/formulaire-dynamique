@@ -19,7 +19,7 @@ namespace formulaire_dynamique.Models
         public Form()
         {
             _answers = new List<FormAnswer>();
-            _questions = new QuestionRoot();
+            _questions = new QuestionRoot(this);
         }
 
         public string Title

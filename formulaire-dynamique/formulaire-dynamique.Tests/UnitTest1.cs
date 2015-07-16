@@ -33,7 +33,8 @@ namespace formulaire_dynamique.Tests
             Form f = new Form();
             f.Questions.Title = "HG67-Bis";
             Assert.AreEqual("HG67-Bis", f.Questions.Title);
-            QuestionBase q1 = f.Questions.AddNewQuestion("formulaire_dynamique.Models.CompositeQuestion, formulaire_dynamique.Models", true);
+            //QuestionBase q1 = f.Questions.AddNewQuestion("formulaire_dynamique.Models.CompositeQuestion, formulaire_dynamique.Models", true);
+            QuestionBase q1 = f.Questions.AddNewQuestion(typeof(CompositeQuestion), true);
             QuestionBase q2 = f.Questions.AddNewQuestion(typeof(CompositeQuestion), true);
             Assert.AreEqual(0, q1.Index);
             Assert.AreEqual(1, q2.Index);

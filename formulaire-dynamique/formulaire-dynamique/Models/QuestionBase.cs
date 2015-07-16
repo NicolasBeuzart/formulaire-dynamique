@@ -9,18 +9,12 @@ namespace formulaire_dynamique.Models
     {
         protected QuestionBase _parent;
         protected string _title;
-        protected List<QuestionBase> _questions;
+        private Form _form;
 
-        public QuestionBase()
+        public Form Form
         {
-            _parent = null;
-            _questions = new List<QuestionBase>();
-        }
-
-        public QuestionBase(QuestionBase parent, List<QuestionBase> questions)
-        {
-            _parent = parent;
-            _questions = questions;
+            get { return _form; }
+            set { _form = value; }
         }
 
         public string Title
@@ -36,7 +30,7 @@ namespace formulaire_dynamique.Models
             {
                 if (value == null)
                 {
-                    Index = _questions.Count - 1;
+                    _form.Questions.RemoveQuestion(this);
                 }
                 else
                 {
@@ -53,18 +47,13 @@ namespace formulaire_dynamique.Models
             return new AnswerBase();
         }
 
-        public bool Contains(QuestionBase q1)
-        {
-            return _questions.Contains(q1);
-        }
-
         public int Index
         {
-            get { return _questions.IndexOf(this); }
+            get { return _form.Questions.GetIndexOf(this); }
             set
             {
-                _questions.Remove(this);
-                _questions.Insert(value, this);
+                _form.Questions.RemoveQuestion(this);
+                _form.Questions.Insert(value, this);
             }
         }
     }
